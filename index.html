@@ -166,7 +166,7 @@
     </li>
     <li><strong>Reporte final obligatorio</strong>, con una tabla por empresa y la Reconciliation: empresas procesadas + salteadas = total del reporte. Si se saltea una empresa, dice por qué.</li>
     <li>Se sacaron la tool vieja de RocketReach y la knowledge <code>roles_marketing_pdf</code>, que estaban interfiriendo.</li>
-    <li>Límite: <strong>10 perfiles por empresa</strong>.</li>
+    <li>Límite: <strong>15 perfiles por empresa</strong>.</li>
   </ul>
 </div>
 
@@ -189,6 +189,7 @@
     <li>Lee de la pestaña los contactos que tienen email y que todavía no tienen un email escrito.</li>
     <li>Escribe un email por contacto, en inglés, de 80 a 120 palabras, adaptado al rol y firmado por el contact owner.</li>
     <li>Guarda el resultado en las columnas <strong>N (Email Subject)</strong> y <strong>O (Email Body)</strong> de la misma pestaña.</li>
+    <li>Usa el nombre de la pestaña tal cual lo escribe el usuario. El prompt prohíbe pegarle el nombre del PDF adjunto.</li>
     <li>Tools nuevas: <em>Read Search Sheet</em> y <em>Write Emails Batch</em>.</li>
   </ul>
 </div>
@@ -209,7 +210,7 @@
     <tr><td>Marketing de punta a punta</td><td>2 empresas, 14 contactos, 13 emails (todos del dominio de la empresa), Reconciliation 2/2</td><td><span class="badge ok">OK</span></td></tr>
     <tr><td>Co-Dev de punta a punta</td><td>5 empresas, 150 contactos, 31 emails (todos del dominio de la empresa), Reconciliation 5/5</td><td><span class="badge ok">OK</span></td></tr>
     <tr><td>Email Writer (prueba de Marketing)</td><td>Generó y guardó los emails sin problemas</td><td><span class="badge ok">OK</span></td></tr>
-    <tr><td>Email Writer (prueba de Co-Dev)</td><td>Falló al leer la pestaña: el agente le pegó el nombre del PDF. Ya está lista la corrección del prompt</td><td><span class="badge warn">Pendiente</span></td></tr>
+    <tr><td>Email Writer (prueba de Co-Dev)</td><td>Con la corrección del prompt (nombre exacto de la pestaña), generó y guardó los emails sin problemas</td><td><span class="badge ok">OK</span></td></tr>
   </tbody>
 </table>
 </div>
@@ -244,8 +245,7 @@
 
 <h2>Pendientes conocidos</h2>
 <ul class="pending">
-  <li><strong>Email Writer con Co-Dev:</strong> en la prueba, el agente le pegó el nombre del PDF al nombre de la pestaña. Ya está lista la línea para el prompt; falta validarla.</li>
-  <li><strong>RocketReach y el límite de consultas (429):</strong> con 30 perfiles, That's No Moon se quedó sin emails. Por eso se volvió a 10. Hay que averiguar el límite real del plan antes de subirlo.</li>
+  <li><strong>RocketReach y el límite de consultas (429):</strong> con 30 perfiles, That's No Moon se quedó sin emails. Las pruebas pasan a hacerse con 15 perfiles por empresa: hay que revisar en cada corrida si aparecen 429 y averiguar el límite real del plan.</li>
   <li><strong>Cloud Chamber, 0 emails:</strong> falta confirmar si fue el 429 o el filtro de dominio (2K).</li>
   <li><strong>Filtros de email:</strong> falta descartar los .edu y los emails cuyo dominio no es el de la empresa (por ejemplo, <code>tim@sony.com</code>).</li>
   <li><strong>Empresas grandes</strong> (como Ubisoft): traen contactos que no sirven (IT, Security, Film &amp; TV).</li>
