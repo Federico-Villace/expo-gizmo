@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informe Outreach Gizmo</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --border: #e3e3df;
+    --accent: #3b5bdb;
+    --ok: #2b8a3e;
+    --ok-bg: #ebfbee;
+    --warn: #b35c00;
+    --warn-bg: #fff4e6;
+    --code-bg: #f1f3f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141517;
+      --surface: #1c1d20;
+      --text: #e9ecef;
+      --muted: #a0a4a8;
+      --border: #2c2e33;
+      --accent: #748ffc;
+      --ok: #69db7c;
+      --ok-bg: #1b2d20;
+      --warn: #ffa94d;
+      --warn-bg: #2d2214;
+      --code-bg: #25262b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141517;
+    --surface: #1c1d20;
+    --text: #e9ecef;
+    --muted: #a0a4a8;
+    --border: #2c2e33;
+    --accent: #748ffc;
+    --ok: #69db7c;
+    --ok-bg: #1b2d20;
+    --warn: #ffa94d;
+    --warn-bg: #2d2214;
+    --code-bg: #25262b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 1.9rem; margin: 0 0 4px; line-height: 1.25; }
+  .meta { color: var(--muted); font-size: .95rem; }
+  h2 {
+    font-size: 1.3rem;
+    margin: 40px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.05rem; margin: 24px 0 8px; }
+  p, li { color: var(--text); }
+  ul { padding-left: 1.2rem; }
+  li { margin: 4px 0; }
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: .9em;
+    word-break: break-word;
+  }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 12px 0;
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: .95rem;
+  }
+  .step small { display: block; color: var(--muted); font-size: .8rem; }
+  .arrow { color: var(--muted); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .card h3 { margin-top: 0; }
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: .93rem;
+  }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .85rem; }
+  tr:last-child td { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    font-size: .78rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .ok { color: var(--ok); background: var(--ok-bg); }
+  .warn { color: var(--warn); background: var(--warn-bg); }
+  ol li { margin: 8px 0; }
+  .pending li { margin: 8px 0; }
+  footer { margin-top: 48px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Automatización de outreach — Gizmo Animation Studio</h1>
+  <div class="meta">Informe de avance · 20 de octubre de 2026</div>
+</header>
+
+<h2>Cómo es el flujo</h2>
+<div class="flow">
+  <div class="step">Signal Scout<small>Co-Dev / Marketing</small></div>
+  <span class="arrow">→</span>
+  <div class="step">Prospect Agent<small>Reporte en PDF</small></div>
+  <span class="arrow">→</span>
+  <div class="step">Contact Finder<small>Contactos + emails a la planilla</small></div>
+  <span class="arrow">→</span>
+  <div class="step">Email Writer<small>Agente aparte, manual</small></div>
+</div>
+<p>Al final, el equipo importa la pestaña generada en HubSpot y arma los envíos.</p>
+
+<h2>Qué se hizo</h2>
+
+<div class="card">
+  <h3>Contact Finder</h3>
+  <ul>
+    <li><strong>Nueva tool RocketReach Batch Email Enrichment</strong>, con una sola llamada por empresa:
+      <ul>
+        <li>Acepta un email solo si RocketReach lo valida (<code>smtp_valid = valid</code>), si es profesional y si no es webmail (se descartan 163.com, gmail, etc.).</li>
+        <li>Si RocketReach frena por exceso de consultas (429), no se cuelga: espera como máximo 10 segundos.</li>
+        <li>Se resolvió el problema de emails sin validar y de direcciones de webmail.</li>
+      </ul>
+    </li>
+    <li><strong>URLs de LinkedIn:</strong> si el reporte no trae la URL, se busca solo con <em>Search Specialized Media</em>. El agente ya no arma URLs a mano.</li>
+    <li><strong>Keywords:</strong>
+      <ul>
+        <li>En Marketing se sumaron Founder, CEO y Studio Head (antes salían muy pocos perfiles).</li>
+        <li>La lista de senior ahora incluye C-level (CEO, CTO, CMO, etc.).</li>
+      </ul>
+    </li>
+    <li><strong>Reporte final obligatorio</strong>, con una tabla por empresa y la Reconciliation: empresas procesadas + salteadas = total del reporte. Si se saltea una empresa, dice por qué.</li>
+    <li>Se sacaron la tool vieja de RocketReach y la knowledge <code>roles_marketing_pdf</code>, que estaban interfiriendo.</li>
+    <li>Límite: <strong>10 perfiles por empresa</strong>.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Tools de búsqueda de Google</h3>
+  <p><em>Search Specialized Media</em> y <em>Search Company News and Signals</em> ahora esperan bien a que Apify termine. Antes cortaban con "Apify run failed: RUNNING" y se perdían empresas, como pasó con Midgar.</p>
+</div>
+
+<div class="card">
+  <h3>Prospect Agent Marketing</h3>
+  <ul>
+    <li>Reglas para la URL de LinkedIn: se usa la recibida, o la que aparece en la web oficial de la empresa; si no hay ninguna, va "Not found". Nunca se inventa. Antes salían URLs equivocadas, por ejemplo la de Avalanche.</li>
+    <li>El Prospect Agent de Co-Dev ya tenía esta regla.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Email Writer (nuevo, agente aparte)</h3>
+  <ul>
+    <li>Lee de la pestaña los contactos que tienen email y que todavía no tienen un email escrito.</li>
+    <li>Escribe un email por contacto, en inglés, de 80 a 120 palabras, adaptado al rol y firmado por el contact owner.</li>
+    <li>Guarda el resultado en las columnas <strong>N (Email Subject)</strong> y <strong>O (Email Body)</strong> de la misma pestaña.</li>
+    <li>Tools nuevas: <em>Read Search Sheet</em> y <em>Write Emails Batch</em>.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>General</h3>
+  <ul>
+    <li>Todos los agentes pasaron a <em>Performance-optimized models</em>.</li>
+    <li>Los historiales de prueba se archivaron y se limpiaron.</li>
+  </ul>
+</div>
+
+<h2>Resultados validados</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Prueba</th><th>Resultado</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>Marketing de punta a punta</td><td>2 empresas, 14 contactos, 13 emails (todos del dominio de la empresa), Reconciliation 2/2</td><td><span class="badge ok">OK</span></td></tr>
+    <tr><td>Co-Dev de punta a punta</td><td>5 empresas, 150 contactos, 31 emails (todos del dominio de la empresa), Reconciliation 5/5</td><td><span class="badge ok">OK</span></td></tr>
+    <tr><td>Email Writer (prueba de Marketing)</td><td>Generó y guardó los emails sin problemas</td><td><span class="badge ok">OK</span></td></tr>
+    <tr><td>Email Writer (prueba de Co-Dev)</td><td>Falló al leer la pestaña: el agente le pegó el nombre del PDF. Ya está lista la corrección del prompt</td><td><span class="badge warn">Pendiente</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Cómo probar</h2>
+
+<h3>Cada tool por separado</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Tool</th><th>Input</th><th>Resultado esperado</th></tr></thead>
+  <tbody>
+    <tr><td>RocketReach Batch</td><td>Adam Turnbull / NetEase</td><td>Rechazado (webmail 163)</td></tr>
+    <tr><td>RocketReach Batch</td><td>Cory Tsang / thatgamecompany</td><td>Aceptado, grade A</td></tr>
+    <tr><td>Search Specialized Media</td><td>"Midgar Studio"</td><td>Devuelve <code>linkedin.com/company/midgar-studio</code></td></tr>
+    <tr><td>Search Company News</td><td>"Remedy"</td><td>Unos 8 resultados</td></tr>
+    <tr><td>Read Search Sheet / Write Emails Batch</td><td>Una pestaña de prueba</td><td>Lee los contactos y escribe en las columnas N y O</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Flujo completo</h3>
+<ol>
+  <li>Correr el <strong>Signal Scout</strong> (Co-Dev o Marketing). Después revisar en el PDF del Prospect Agent que cada URL de LinkedIn sea real o diga "Not found".</li>
+  <li>Pasarle el PDF al <strong>Contact Finder</strong>, con el contact owner (Federico Villace o Georgina Gebauer). Después revisar:
+    <ul>
+      <li>que el reporte final esté completo y con Reconciliation;</li>
+      <li>que la pestaña nueva tenga solo emails del dominio de cada empresa.</li>
+    </ul>
+  </li>
+  <li>Correr el <strong>Email Writer</strong> con el <strong>nombre exacto de la pestaña</strong> y el <strong>PDF del reporte adjunto</strong>. Después revisar las columnas N y O.</li>
+</ol>
+
+<h2>Pendientes conocidos</h2>
+<ul class="pending">
+  <li><strong>Email Writer con Co-Dev:</strong> en la prueba, el agente le pegó el nombre del PDF al nombre de la pestaña. Ya está lista la línea para el prompt; falta validarla.</li>
+  <li><strong>RocketReach y el límite de consultas (429):</strong> con 30 perfiles, That's No Moon se quedó sin emails. Por eso se volvió a 10. Hay que averiguar el límite real del plan antes de subirlo.</li>
+  <li><strong>Cloud Chamber, 0 emails:</strong> falta confirmar si fue el 429 o el filtro de dominio (2K).</li>
+  <li><strong>Filtros de email:</strong> falta descartar los .edu y los emails cuyo dominio no es el de la empresa (por ejemplo, <code>tim@sony.com</code>).</li>
+  <li><strong>Empresas grandes</strong> (como Ubisoft): traen contactos que no sirven (IT, Security, Film &amp; TV).</li>
+  <li><strong>Duplicados:</strong> falta deduplicar en el Write Batch y en el Signal Scout (ej. "Avalanche Studios" vs "Avalanche Studios Group").</li>
+  <li><strong>Antes de entregar:</strong> volver a limpiar los historiales.</li>
+  <li><strong>Para el equipo:</strong> definir si van a mandar emails individuales o usar templates de HubSpot.</li>
+</ul>
+
+<footer>Gizmo Animation Studio · Automatización de outreach en Relevance AI + Google Sheets + HubSpot</footer>
+
+</main>
+</body>
+</html>
